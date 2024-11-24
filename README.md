@@ -2,6 +2,8 @@
 
 This is a fun and harmless "system infiltration" tool that simulates a system compromise, displaying fake system information and triggering a "rickroll" video. This tool is for educational and entertainment purposes only. It mimics a terminal-style output on a GUI, and at the end, it will open a Rick Astley's "Never Gonna Give You Up" video on YouTube, commonly known as a "Rickroll."
 
+![hình ảnh](https://i.imgur.com/fdN8YXF.png)
+
 ## Features
 - Displays fake system information, such as the OS, CPU, RAM usage, and more.
 - Simulates a system infiltration with a series of humorous messages and warnings.
@@ -56,6 +58,8 @@ This script is **not** a malicious program. It does not cause any harm to your c
 # Công Cụ Thâm Nhập Hệ Thống
 
 Đây là một công cụ "thâm nhập hệ thống" vui nhộn và vô hại, mô phỏng một cuộc tấn công hệ thống, hiển thị thông tin hệ thống giả và kết thúc bằng một video "rickroll". Công cụ này chỉ dùng cho mục đích giáo dục và giải trí. Nó mô phỏng giao diện đầu ra của terminal trên GUI, và cuối cùng sẽ mở video "Never Gonna Give You Up" của Rick Astley trên YouTube, một "Rickroll" nổi tiếng.
+
+![hình ảnh](https://i.imgur.com/fdN8YXF.png)
 
 ## Tính Năng
 - Hiển thị thông tin hệ thống giả, bao gồm hệ điều hành, CPU, dung lượng RAM, và nhiều thông tin khác.
