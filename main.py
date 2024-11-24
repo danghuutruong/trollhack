@@ -4,8 +4,9 @@ import random
 import webbrowser
 import socket
 import platform
-import psutil  
-import keyboard  
+import psutil
+import keyboard
+import uuid
 
 def type_text(widget, text, delay=10):
     for char in text:
@@ -20,80 +21,76 @@ def rickroll_and_close():
 
 def get_system_info():
     system_info = {
-        'OS': platform.system(),  
-        'Machine': platform.machine(),  
-        'IP Address': socket.gethostbyname(socket.gethostname()),  
-        'Hostname': socket.gethostname(),  
-        'CPU Usage': psutil.cpu_percent(),  
-        'Memory Usage': psutil.virtual_memory().percent,  
-        'Disk Usage': psutil.disk_usage('/').percent,  
+        'OS': platform.system() + " " + platform.release(),
+        'Machine': platform.machine(),
+        'Processor': platform.processor(),
+        'CPU Count': psutil.cpu_count(logical=True),
+        'IP Address': socket.gethostbyname(socket.gethostname()),
+        'Hostname': socket.gethostname(),
+        'MAC Address': ':'.join(['{:02x}'.format((uuid.getnode() >> elements) & 0xff) for elements in range(0, 2*6, 2)][::-1]),
+        'CPU Usage': psutil.cpu_percent(),
+        'Memory Usage': psutil.virtual_memory().percent,
+        'Disk Usage': psutil.disk_usage('/').percent,
+        'Uptime': time.strftime("%H:%M:%S", time.gmtime(time.time() - psutil.boot_time())),
+        'Active Connections': len(psutil.net_connections())
     }
     return system_info
 
 root = tk.Tk()
-root.title("Hack Tool")
+root.title("System Infiltration Tool")
 root.configure(bg="black")
-root.attributes("-fullscreen", True)  
+root.attributes("-fullscreen", True)
 
 console = tk.Text(root, bg="black", fg="green", insertbackground="green", font=("Consolas", 12), wrap="none", borderwidth=0)
 console.pack(fill="both", expand=True)
 
 def run_fake_console():
     ascii_art = """
-                                          
-ooooo   ooooo       .o.         .oooooo.   oooo    oooo    ooooooooooooo ooooooooo.     .oooooo.   ooooo        ooooo        
-`888'   `888'      .888.       d8P'  `Y8b  `888   .8P'     8'   888   `8 `888   `Y88.  d8P'  `Y8b  `888'        `888'        
- 888     888      .8"888.     888           888  d8'            888       888   .d88' 888      888  888          888         
- 888ooooo888     .8' `888.    888           88888[              888       888ooo88P'  888      888  888          888         
- 888     888    .88ooo8888.   888           888`88b.            888       888`88b.    888      888  888          888         
- 888     888   .8'     `888.  `88b    ooo   888  `88b.          888       888  `88b.  `88b    d88'  888       o  888       o 
-o888o   o888o o88o     o8888o  `Y8bood8P'  o888o  o888o        o888o     o888o  o888o  `Y8bood8P'  o888ooooood8 o888ooooood8 
-
-
-
-
-
-
-
-
-
+██╗  ██╗ █████╗  ██████╗██╗  ██╗██╗███╗   ██╗ ██████╗ 
+██║  ██║██╔══██╗██╔════╝██║ ██╔╝██║████╗  ██║██╔════╝ 
+███████║███████║██║     █████╔╝ ██║██╔██╗ ██║██║  ███╗
+██╔══██║██╔══██║██║     ██╔═██╗ ██║██║╚██╗██║██║   ██║
+██║  ██║██║  ██║╚██████╗██║  ██╗██║██║ ╚████║╚██████╔╝
+╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝  troll
+https://github.com/danghuutruong
 
     """
+    
     system_info = get_system_info()
 
     lines = [
         ascii_art,  
-        "Connecting to the system...",
+        "Connecting to the target system...",
         "---------------------------------",
-        f"System: {system_info['OS']} {system_info['Machine']}",
+        f"Operating System: {system_info['OS']}",
+        f"Machine Type: {system_info['Machine']}",
+        f"Processor: {system_info['Processor']}",
+        f"CPU Count: {system_info['CPU Count']}",
         f"Hostname: {system_info['Hostname']}",
         f"IP Address: {system_info['IP Address']}",
+        f"MAC Address: {system_info['MAC Address']}",
         "",
-        "Initializing protocols...",
+        "Gathering sensitive data...",
         "---------------------------------",
         f"CPU Usage: {system_info['CPU Usage']}%",
         f"Memory Usage: {system_info['Memory Usage']}%",
         f"Disk Usage: {system_info['Disk Usage']}%",
+        f"System Uptime: {system_info['Uptime']}",
+        f"Active Network Connections: {system_info['Active Connections']}",
         "",
-        "Ping to remote server...",
-        f"Pinging {random.choice(['192.168.1.1', '10.0.0.1', '8.8.8.8'])} with 32 bytes of data:",
-        "Reply from {0}: bytes=32 time<1ms",
-        "Reply from {0}: bytes=32 time<1ms",
-        "Reply from {0}: bytes=32 time<1ms",
-        "",
-        "Ping statistics for {0}:",
-        "    Packets: Sent = 3, Received = 3, Lost = 0 (0% loss),",
-        "Approximate round trip times in milli-seconds:",
-        "    Minimum = 0ms, Maximum = 0ms, Average = 0ms",
-        "",
-        "!!! WARNING: Unauthorized access detected !!!",
-        "Attempting to bypass firewall...",
-        "Bypassing successfully...",
+        "!!! CRITICAL WARNING: Unauthorized access detected !!!",
+        "Attempting to bypass security measures...",
+        "Bypassing firewall... SUCCESS",
+        "Installing backdoor... COMPLETE",
         "---------------------------------",
-        "Opening backdoor...",
-        "---------------------------------",
-        "Connection established. Remote session active.",
-        "Redirecting to target...",
+        "Initiating system lockdown...",
+        "Locking all critical files...",
+        "System control: 100%",
+        "Redirecting to remote server...",
+        "",
+        "!!! WARNING: Your system is now under control !!!",
+        "Preparing to erase all data...",
+        "Data erase initiated in 5 seconds...",
         "",
     ]
 
@@ -101,12 +98,12 @@ o888o   o888o o88o     o8888o  `Y8bood8P'  o888o  o888o        o888o     o888o  
         type_text(console, line + "\n", delay=10)
         time.sleep(0.2)
 
-    time.sleep(2)
+    time.sleep(5)  
     rickroll_and_close()
 
 root.after(100, run_fake_console)
 
-def close_on_escape(event):
+def close_on_escape(event=None):
     root.destroy()
 
 def block_all_keys(event):
@@ -115,5 +112,7 @@ def block_all_keys(event):
 keyboard.block_key('win')  
 root.bind("<KeyPress>", block_all_keys)  
 root.bind("<KeyRelease>", block_all_keys)  
+
+root.bind("<Control-c>", close_on_escape)
 
 root.mainloop()
